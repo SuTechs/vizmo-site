@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2f2e9" />
+    <meta
+      name="description"
+      content="Explore a connected workplace, from the first arrival to the last meeting. An interactive Vizmo concept."
+    />
+    <title>Vizmo — A connected day</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#journey">Skip to the journey</a>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Vizmo home"
+        ><img src="/favicon.svg" width="29" height="33" alt="" /><span
+          >vizmo</span
+        ></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#security">Security</a><a href="#desks">Workplace</a
+        ><a href="#command">Command centre</a>
+      </nav>
+      <a
+        class="contact-link"
+        href="https://bookings.vizmo.in/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Let’s talk <span aria-hidden="true">↗</span></a
+      >
+    </header>
+
+    <div class="scene-stage" aria-hidden="true">
+      <canvas id="world"></canvas>
+      <div id="scene-loader">Preparing your workplace<span></span></div>
+      <div class="scene-stamp">
+        <span class="stamp-dot"></span
+        ><span id="scene-name">A connected workplace</span
+        ><span class="stamp-tag">VIZMO</span>
+      </div>
+      <div id="scene-note">
+        <span class="note-kicker">ONE CONNECTED DAY</span
+        ><strong>Everything in its place.</strong
+        ><span class="note-detail">Security. People. Spaces.</span>
+      </div>
+      <div class="scene-coordinate">
+        <span id="scene-count">00 / 07</span><span>SCROLL TO EXPLORE</span>
+      </div>
+    </div>
+    <div id="webgl-message" role="status" hidden>
+      The 3D preview is unavailable on this device. You can still explore the
+      full story below.
+    </div>
+
+    <main id="journey">
+      <section
+        class="chapter hero"
+        id="home"
+        data-chapter="0"
+        aria-labelledby="hero-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="tiny-cross" aria-hidden="true">✳</span> INTEGRATE.
+            SECURE. OPERATE.
+          </p>
+          <h1 id="hero-title">
+            A better day. <br />From the <br /><em>outside in.</em>
+          </h1>
+          <p class="intro">
+            A workplace is more than a building. <br />It’s everything that
+            happens inside—and<br class="desktop-break" />
+            everything that gets you there.
+          </p>
+          <a class="journey-link" href="#security"
+            ><span class="round-arrow" aria-hidden="true">↓</span> Scroll into
+            your workday</a
+          >
+          <div class="hero-footnote">
+            <span>PHYSICAL SECURITY</span><i></i
+            ><span>WORKPLACE EXPERIENCE</span>
+          </div>
+        </div>
+      </section>
+      <section
+        class="chapter"
+        id="security"
+        data-chapter="1"
+        aria-labelledby="security-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">01</span> THE FIRST HELLO
+          </p>
+          <h2 id="security-title">
+            A welcome. <br />With security <br /><em>built in.</em>
+          </h2>
+          <p class="intro">
+            Before anyone steps inside, your entrance is already at work.
+            Connect vehicle entry, access control and the people who keep your
+            site secure.
+          </p>
+          <div class="feature-line">
+            <span>Vehicle entrance</span><span>Access control</span>
+          </div>
+          <p class="chapter-aside">The barrier opens as you scroll.</p>
+        </div>
+      </section>
+      <section
+        class="chapter"
+        id="parking"
+        data-chapter="2"
+        aria-labelledby="parking-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">02</span> A SPACE WAITING FOR YOU
+          </p>
+          <h2 id="parking-title">
+            Less circling. <br /><em>More arriving.</em>
+          </h2>
+          <p class="intro">
+            The workday shouldn’t start with a search. Reserve a parking space
+            before arrival and give every journey a smoother finish.
+          </p>
+          <div class="feature-line">
+            <span>Parking booking</span><span>Check-in & waitlists</span>
+          </div>
+          <p class="chapter-aside">Follow the car into its reserved space.</p>
+        </div>
+      </section>
+      <section
+        class="chapter"
+        id="visitors"
+        data-chapter="3"
+        aria-labelledby="visitors-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">03</span> MAKE PEOPLE FEEL EXPECTED
+          </p>
+          <h2 id="visitors-title">
+            Good mornings. <br /><em>Great first <br />impressions.</em>
+          </h2>
+          <p class="intro">
+            From invitation to check-in, make every visit feel considered. A
+            simple arrival for your guest. Clear visibility for your team.
+          </p>
+          <div class="feature-line">
+            <span>Visitor management</span><span>Host notifications</span>
+          </div>
+          <p class="chapter-aside">A quick check-in. A warmer welcome.</p>
+        </div>
+      </section>
+      <section
+        class="chapter"
+        id="desks"
+        data-chapter="4"
+        aria-labelledby="desks-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">04</span> FIND YOUR PLACE
+          </p>
+          <h2 id="desks-title">
+            Your team. <br />Your rhythm. <br /><em>Your space.</em>
+          </h2>
+          <p class="intro">
+            A quiet corner or a spot beside your team. Give people the freedom
+            to book a desk that fits the way they work.
+          </p>
+          <div class="feature-line">
+            <span>Desk booking</span><span>Approvals & availability</span>
+          </div>
+          <p class="chapter-aside">Watch an available desk become your desk.</p>
+        </div>
+      </section>
+      <section
+        class="chapter"
+        id="rooms"
+        data-chapter="5"
+        aria-labelledby="rooms-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">05</span> ROOM FOR THE NEXT BIG IDEA
+          </p>
+          <h2 id="rooms-title">Bring people <br /><em>together.</em></h2>
+          <p class="intro">
+            Find the right room, reserve the time, and get straight to the
+            conversation. Keep your spaces and calendars in sync.
+          </p>
+          <div class="feature-line">
+            <span>Room booking</span><span>Calendar integrations</span>
+          </div>
+          <p class="chapter-aside">One room. Ready for your team.</p>
+        </div>
+      </section>
+      <section
+        class="chapter"
+        id="command"
+        data-chapter="6"
+        aria-labelledby="command-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">06</span> QUIETLY KEEPING IT ALL IN
+            VIEW
+          </p>
+          <h2 id="command-title">
+            Every angle. <br /><em>One clear view.</em>
+          </h2>
+          <p class="intro">
+            Behind a seamless day is a team with the whole picture. Vizmo Argus
+            brings connected security systems, device health and alerts into one
+            operational view.
+          </p>
+          <div class="feature-line">
+            <span>Video surveillance</span><span>Vizmo Argus</span>
+          </div>
+          <p class="chapter-aside">From an alert to an acknowledged action.</p>
+        </div>
+      </section>
+      <section
+        class="chapter closing"
+        id="connected"
+        data-chapter="7"
+        aria-labelledby="connected-title"
+      >
+        <div class="chapter-body">
+          <p class="eyebrow">
+            <span class="chapter-number">07</span> THE WHOLE PICTURE
+          </p>
+          <h2 id="connected-title">
+            One workplace. <br /><em>Every part <br />connected.</em>
+          </h2>
+          <p class="intro">
+            Physical security. Workplace software. <br />One partner from the
+            first site assessment to everyday operations.
+          </p>
+          <a
+            class="primary-link"
+            href="https://bookings.vizmo.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Let’s connect your workplace <span aria-hidden="true">↗</span></a
+          >
+          <div class="delivery-line">
+            Design <span>→</span> Install <span>→</span> Integrate
+            <span>→</span> Support
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="chapter-nav" aria-label="Journey chapters">
+      <a href="#home" aria-label="Introduction" aria-current="step"
+        ><span>Introduction</span></a
+      >
+      <a href="#security" aria-label="Security entrance"
+        ><span>Security</span></a
+      >
+      <a href="#parking" aria-label="Parking"><span>Parking</span></a>
+      <a href="#visitors" aria-label="Visitor management"
+        ><span>Visitors</span></a
+      >
+      <a href="#desks" aria-label="Desk booking"><span>Desks</span></a>
+      <a href="#rooms" aria-label="Room booking"><span>Rooms</span></a>
+      <a href="#command" aria-label="Command centre"><span>Command</span></a>
+      <a href="#connected" aria-label="The connected workplace"
+        ><span>Connected</span></a
+      >
+    </nav>
+    <div class="page-progress" aria-hidden="true"><div></div></div>
+    <footer class="site-footer">
+      <a class="brand" href="#home">vizmo</a
+      ><span>An interactive concept · October 2026</span
+      ><a href="#home">Back to the beginning ↑</a>
+    </footer>
+    <noscript
+      ><p class="noscript-message">
+        Enable JavaScript to experience the scroll animation. All product
+        information is available below.
+      </p></noscript
+    >
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
