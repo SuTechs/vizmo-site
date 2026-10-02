@@ -35,9 +35,9 @@ materials.glass = new THREE.MeshPhysicalMaterial({
   side: THREE.DoubleSide,
 });
 materials.darkGlass = new THREE.MeshStandardMaterial({
-  color: "#4f7772",
-  roughness: 0.18,
-  metalness: 0.35,
+  color: "#183c38",
+  roughness: 0.1,
+  metalness: 0.65,
 });
 materials.light = new THREE.MeshStandardMaterial({
   color: "#ffffe7",
@@ -161,27 +161,69 @@ export function person(parent, position, color = "teal") {
 }
 export function car(parent, position = [0, 0, 0], color = "ivory") {
   const g = group(parent, position);
-  box(g, [0, 0.58, 0], [1.65, 0.55, 3.2], color, 0.24);
-  box(g, [0, 0.92, -0.12], [1.4, 0.59, 1.85], color, 0.23);
-  box(g, [0, 1.01, 0.63], [1.28, 0.36, 0.11], "darkGlass", 0.08).rotation.x =
-    0.25;
-  box(g, [0, 1.01, -0.94], [1.23, 0.33, 0.1], "darkGlass", 0.07).rotation.x =
-    -0.2;
-  for (const x of [-0.7, 0.7]) {
-    box(g, [x, 1.03, -0.14], [0.03, 0.33, 1.25], "darkGlass", 0.01);
-    box(g, [x, 1.03, -0.15], [0.06, 0.4, 0.08], color);
-    for (const z of [-0.99, 0.99]) {
-      const wheel = cylinder(g, [x * 1.12, 0.36, z], 0.34, 0.19, "deep");
-      wheel.rotation.z = Math.PI / 2;
-      const hub = cylinder(g, [x * 1.27, 0.36, z], 0.18, 0.025, "road");
+  const paint = new THREE.MeshPhysicalMaterial({
+    color: palette[color],
+    metalness: 0.5,
+    roughness: 0.22,
+    clearcoat: 1,
+    clearcoatRoughness: 0.1,
+  });
+  box(g, [0, 0.53, 0], [1.79, 0.48, 3.65], paint, 0.23);
+  box(g, [0, 0.8, -0.05], [1.65, 0.22, 3.12], paint, 0.16);
+  box(g, [0, 1.01, -0.29], [1.52, 0.58, 1.95], "darkGlass", 0.26);
+  box(g, [0, 1.3, -0.37], [1.35, 0.07, 1.22], paint, 0.03);
+  box(g, [0, 1.03, 0.55], [1.35, 0.39, 0.035], "darkGlass", 0.01).rotation.x =
+    -0.52;
+  box(g, [0, 0.9, 1.11], [1.49, 0.08, 1.0], paint, 0.035).rotation.x = 0.07;
+  box(g, [0, 0.88, -1.45], [1.48, 0.11, 0.49], paint, 0.04);
+  const tireMaterial = new THREE.MeshStandardMaterial({
+    color: "#16211e",
+    roughness: 0.8,
+  });
+  const chrome = new THREE.MeshStandardMaterial({
+    color: "#c4d1c8",
+    metalness: 0.9,
+    roughness: 0.18,
+  });
+  for (const x of [-0.81, 0.81]) {
+    box(g, [x * 0.89, 1.06, -0.3], [0.055, 0.4, 0.1], paint, 0.02);
+    box(g, [x * 1.04, 0.87, 0.32], [0.23, 0.13, 0.21], paint, 0.055);
+    box(g, [x, 0.68, -0.16], [0.025, 0.035, 0.22], chrome);
+    for (const z of [-1.11, 1.13]) {
+      const wheel = group(g, [x, 0.4, z]);
+      const rubber = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.39, 0.39, 0.23, 32),
+        tireMaterial,
+      );
+      rubber.rotation.z = Math.PI / 2;
+      wheel.add(rubber);
+      const side = x < 0 ? -1 : 1;
+      const hub = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.285, 0.285, 0.016, 32),
+        chrome,
+      );
       hub.rotation.z = Math.PI / 2;
+      hub.position.x = side * 0.122;
+      wheel.add(hub);
+      for (let i = 0; i < 10; i++) {
+        const a = (i * Math.PI) / 5;
+        const spoke = box(
+          wheel,
+          [side * 0.136, Math.cos(a) * 0.15, Math.sin(a) * 0.15],
+          [0.018, 0.045, 0.22],
+          "deep",
+          0.008,
+        );
+        spoke.rotation.x = -a;
+      }
     }
   }
-  for (const x of [-0.56, 0.56]) {
-    box(g, [x, 0.65, 1.59], [0.34, 0.12, 0.03], "light", 0.02);
-    box(g, [x, 0.65, -1.59], [0.34, 0.1, 0.03], "coral", 0.02);
+  for (const x of [-0.59, 0.59]) {
+    box(g, [x, 0.69, 1.78], [0.44, 0.06, 0.035], "light", 0.025);
+    box(g, [x, 0.65, -1.79], [0.5, 0.045, 0.035], "coral", 0.018);
   }
-  box(g, [0, 0.49, 1.62], [0.49, 0.12, 0.02], "deep");
+  box(g, [0, 0.43, 1.81], [1.15, 0.11, 0.025], "deep", 0.025);
+  box(g, [0, 0.66, -1.8], [0.8, 0.025, 0.015], "coral");
   return g;
 }
 export function securityCamera(parent, x, z) {

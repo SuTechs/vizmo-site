@@ -1,6 +1,6 @@
 import { createWorld } from "./world.js";
 
-const chapters = [...document.querySelectorAll("[data-chapter]")];
+const chapters = [...document.querySelectorAll("section[data-chapter]")];
 const links = [...document.querySelectorAll(".chapter-nav a")];
 const stage = document.querySelector(".scene-stage");
 const canvas = document.querySelector("#world");
@@ -115,17 +115,22 @@ function update() {
   index = Math.max(0, Math.min(index, chapters.length - 1));
   const chapter = offsets[index];
   if (!chapter) return;
-  const local = Math.max(0, Math.min(1, (y - chapter.top) / chapter.height));
-  // The action finishes before the last 26% of a chapter. That final segment
-  // carries the camera vertically to the next set, matching the passing text.
-  const action = Math.min(1, local / 0.68);
+  // The last chapter has no following viewport to scroll into. Complete its
+  // choreography while it is still pinned, before the footer fades the scene.
+  const duration =
+    index === chapters.length - 1
+      ? Math.max(1, chapter.height - innerHeight)
+      : chapter.height;
+  const local = Math.max(0, Math.min(1, (y - chapter.top) / duration));
+  const action = Math.min(1, local / 0.79);
   const transition =
-    index < chapters.length - 1 ? Math.max(0, (local - 0.74) / 0.26) : 0;
+    index < chapters.length - 1 ? Math.max(0, (local - 0.8) / 0.2) : 0;
   if (world && !contextLost)
     world.render(index, action, transition, reducedMotion.matches);
   const active =
     transition > 0.5 ? Math.min(index + 1, chapters.length - 1) : index;
   if (active !== lastChapter) {
+    document.body.classList.toggle("command-mode", active === 6);
     links.forEach((link, i) => {
       if (i === active) link.setAttribute("aria-current", "step");
       else link.removeAttribute("aria-current");
