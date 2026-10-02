@@ -35,4 +35,12 @@ The renderer caps device pixel ratio at 1.65, creates sets as they are reached, 
 
 All 3D geometry is procedural and local. Google Fonts is the only external rendering asset. The booking links point to the existing Vizmo booking site. Booking, check-in and alert states are illustrative animations, not live integrations. The command-centre screens are labeled illustrative views.
 
+## GitHub Pages
+
+Public prototype: https://sutechs.github.io/vizmo-site/
+
+Pushes to `main` run the choreography tests, dependency audit and production build, then deploy `dist/` to GitHub Pages. Pull requests run the same checks without deploying. Relative asset URLs keep the build working under `/vizmo-site/` as well as local preview.
+
+To roll back, revert the relevant commit on `main` and push; the workflow redeploys the restored version.
+
 This prototype explores direction and scroll choreography. It does not modify or deploy either existing Vizmo site.
